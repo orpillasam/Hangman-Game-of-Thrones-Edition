@@ -1,4 +1,4 @@
-var zIndex = 2;
+	var zIndex = 2;
 	var zIndexBack = 1;
 	var placeholder;
 	var correctGuesses = 0;
@@ -45,6 +45,7 @@ var zIndex = 2;
     var AudioGreyjoy = document.createElement("audio");
       AudioGreyjoy.setAttribute("src", "assets/audio/greyjoy.mp3");
 
+    //Game resets, generates new random word
 	function gameReset()
 	{	
 		document.getElementById("throne").style.zIndex = 99 + zIndex;
@@ -59,9 +60,7 @@ var zIndex = 2;
 		AudioGreyjoy.pause();
 		audioBaratheon.pause();
 		audioDothraki.pause();
-		audioTargaryen.pause();
-		emptyBox = true;
-		console.log("game has reset");
+		audioTargaryen.pause();	
 		placeholder=[];
 		wrongLetters = [];
 		correctLetters = [];
@@ -70,7 +69,7 @@ var zIndex = 2;
 		var html = document.querySelector("#incorrectLetters").innerHTML = "";
 		var html1 = document.querySelector("#guessesLeft").innerHTML = guessesLeft;
 		chosenWord = wordChoices[Math.floor(Math.random()*wordChoices.length)];
-		console.log("choosen word is " + chosenWord);
+			console.log("choosen word is " + chosenWord);
 		for (var j=0; j<chosenWord.length; j++)
 		{	
 			placeholder[j] = "_ ";		
@@ -78,13 +77,14 @@ var zIndex = 2;
 		}
 		document.getElementById('letters').innerHTML = placeholder.join("");	
 		startGame();
-		console.log("chosen word length is " + chosenWord.length);	
+			console.log("chosen word length is " + chosenWord.length);	
 		var html2 = document.querySelector("#space-bar").innerHTML = "";
+			console.log("game has reset");
 	}
 
+	//if user wins, the corresponding picture and song plays for the word
 	function gameWin()
 	{	
-
 		document.getElementById("throne").style.zIndex = zIndexBack;
 		if (chosenWord == "TARGARYEN"){
 			audioTargaryen.currentTime = 0;
@@ -148,6 +148,7 @@ var zIndex = 2;
 		spaceBarStart();
 	}
 
+	//if user loses, loads the corresponding picture and song
 	function gameLoss()
 	{
 		audioHangman.currentTime = 0;
@@ -158,6 +159,7 @@ var zIndex = 2;
 		spaceBarStart();
 	}
 
+	//prompts the user to press the space bar to start the game (gameReset)
 	function spaceBarStart()
 	{
 		var html2 = document.querySelector("#space-bar").innerHTML = 
@@ -172,6 +174,7 @@ var zIndex = 2;
 
 	spaceBarStart();
 
+	//logic to play the game
 	function startGame()
 	{
 		document.onkeyup = function (event)
@@ -181,45 +184,55 @@ var zIndex = 2;
 			console.log("current guess is " + currentGuessUpper);
 			document.getElementById('letters').innerHTML = placeholder;	
 			wrongLetter=true;
-		
-				for (var i=0; i<chosenWord.length;i++)
-				{	
-					if (chosenWord.charAt(i)===currentGuessUpper)
-					{
-						placeholder[i] = currentGuessUpper;
-						correctLetters.push(currentGuessUpper);
-							console.log("correct letters are " + correctLetters);
-							console.log("correct letters are " + placeholder);
-						wrongLetter = false;			
-							console.log("wrong letter is " + wrongLetter);
-						correctGuesses++;
-							console.log("Correct guesses is " + correctGuesses);
-								
-						if(correctGuesses === chosenWord.length)
-						{	console.log("game finished");
-							wins++;
-							console.log("wins is " + wins);
-							gameWin();	
-						}
-					}
-				}
-						if (wrongLetter == true)
-						{	
-							guessesLeft--;
-							wrongLetters.push(currentGuessUpper);
-							var html1 = document.querySelector("#guessesLeft").innerHTML = guessesLeft;
-								console.log("The wrong letters are " + wrongLetters);
-							document.getElementById('incorrectLetters').innerHTML = wrongLetters;
-								console.log("wrong letter " + currentGuessUpper);
-								console.log("wrong guesses total is " + guessesLeft);
-								console.log("wrong letter value is " + wrongLetter);
+		console.log("test");
 
-							if (guessesLeft === 0)
-							{
-								console.log("game is over because this many wrong guesses " + guessesLeft);
-								gameLoss();
+				if ((correctLetters.indexOf(currentGuessUpper)>=0) || 
+					(wrongLetters.indexOf(currentGuessUpper)>=0))
+				{
+					console.log("duplicate correct letter or wrong letter");
+				}
+
+				else  
+				{	for (var i=0; i<chosenWord.length;i++)
+					{	
+						if (chosenWord.charAt(i)===currentGuessUpper)
+						{ console.log("chosen word at i is " + chosenWord[i]);
+							placeholder[i] = currentGuessUpper;
+							correctLetters.push(currentGuessUpper);
+								console.log("correct letters are " + correctLetters);
+								console.log("correct letters are " + placeholder);
+							wrongLetter = false;			
+								console.log("wrong letter is " + wrongLetter);
+							correctGuesses++;
+								console.log("Correct guesses is " + correctGuesses);
+									
+							if(correctGuesses === chosenWord.length)
+							{	console.log("game finished");
+								wins++;
+								console.log("wins is " + wins);
+								gameWin();	
 							}
 						}
+					}
+							if (wrongLetter == true)
+							{	
+								guessesLeft--;
+								wrongLetters.push(currentGuessUpper);
+								var html1 = document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+									console.log("The wrong letters are " + wrongLetters);
+								document.getElementById('incorrectLetters').innerHTML = wrongLetters;
+									console.log("wrong letter " + currentGuessUpper);
+									console.log("wrong guesses total is " + guessesLeft);
+									console.log("wrong letter value is " + wrongLetter);
+
+								if (guessesLeft === 0)
+								{
+									console.log("game is over because this many wrong guesses " + guessesLeft);
+									gameLoss();
+								}
+
+							}
+				}	
 			document.getElementById('letters').innerHTML = placeholder.join("")	;		
 		}
 	}

@@ -20,7 +20,7 @@ h2{
 
 .main-body::after {
 	content: "";
-	background-image: url("../../assets/images/westerosmap01.jpg");
+	background-image: url("../../assets/images/westeros_large.jpg");
 	background-repeat: no-repeat;
 	opacity: .3;
 	top: 0;
