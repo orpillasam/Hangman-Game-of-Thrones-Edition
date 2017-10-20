@@ -7,7 +7,7 @@
 	var wins = 0;	
 	var wrongLetters = [];
 	var correctLetters = [];
-	var wordChoices = ["TARGARYEN", "STARK", "LANNISTER", "TULLY", "BARATHEON", "MARTELL", "TYRELL", 'WHITEWALKERS', 'NIGHTSWATCH', 'GREYJOY'];
+	var wordChoices = ["TARGARYEN", "STARK", "LANNISTER", "TULLY", "BARATHEON", "MARTELL", "TYRELL", 'WHITEWALKERS', 'NIGHTSWATCH', 'GREYJOY', 'ARRYN'];
 	
 	var audioHangman = document.createElement("audio");
       audioHangman.setAttribute("src", "assets/audio/hangman.mp3");
@@ -42,8 +42,11 @@
 	var audioNightswatch = document.createElement("audio");
       audioNightswatch.setAttribute("src", "assets/audio/nightswatch.mp3");
 
-    var AudioGreyjoy = document.createElement("audio");
-      AudioGreyjoy.setAttribute("src", "assets/audio/greyjoy.mp3");
+    var audioGreyjoy = document.createElement("audio");
+      audioGreyjoy.setAttribute("src", "assets/audio/greyjoy.mp3");
+
+    var audioArryn = document.createElement("audio");
+      audioArryn.setAttribute("src", "assets/audio/arryn.mp3");
 
     //Game resets, generates new random word
 	function gameReset()
@@ -57,10 +60,11 @@
 		audioMartell.pause();
 		audioWhitewalkers.pause();
 		audioNightswatch.pause();
-		AudioGreyjoy.pause();
+		audioGreyjoy.pause();
 		audioBaratheon.pause();
 		audioDothraki.pause();
 		audioTargaryen.pause();	
+		audioArryn.pause();	
 		placeholder=[];
 		wrongLetters = [];
 		correctLetters = [];
@@ -138,9 +142,14 @@
 			document.getElementById("nightswatch").style.zIndex = zIndex;
 		}
 		if (chosenWord == "GREYJOY"){
-			AudioGreyjoy.currentTime = 0;
-			AudioGreyjoy.play();
+			audioGreyjoy.currentTime = 0;
+			audioGreyjoy.play();
 			document.getElementById("greyjoy").style.zIndex = zIndex;
+		}
+		if (chosenWord == "ARRYN"){
+			audioArryn.currentTime = 0;
+			audioArryn.play();
+			document.getElementById("arryn").style.zIndex = zIndex;
 		}
 		document.getElementById("throne").style.zIndex = zIndexBack;
 		zIndex++;
