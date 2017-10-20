@@ -2,283 +2,54 @@
 <html>
 <head>
 	<title>Hangman - Game of Thrones Edition</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div class="main-body">
-	<div class = "main-container">
-		<header class="header">
-			<img id='logo' src = 'assets/images/got_logo.png' alt="got_logo">
-			<h2>WHO WILL WIN THE IRON THRONE?</h2>
-		</header>
-		<div id="space-bar"></div>
 
-		<div class ="container-body">
-			<article class ="main-section">
-				<div id="win-text">WINS</div>
-				<div id="wins">	</div>				
-				<div id="gueses-text">GUESSES REMAINING</div>
-				<div id="guessesLeft"></div>
-				<div id="lettersguessed-test">LETTER GUESSED</div>
-				<div id="incorrectLetters"></div>
-				<div id="current-word-text">CURRENT WORD</div>
-				<div id="letters"></div>
-					
-			</article>
-			<aside class ="aside">
-			
-					 <img src="assets/images/throne_small.jpg" alt="throne" id="throne">
-					 <img src="assets/images/sigil_arryn_small.jpg" alt="arryn" id="arryn">
-					 <img src="assets/images/sigil_baratheon_small.jpg" alt="baratheon" id="baratheon">
-					 <img src="assets/images/sigil_greyjoy_small.jpg" alt="greyjoy" id="greyjoy">
-					 <img src="assets/images/sigil_lannister_small.jpg" alt="lannister" id="lannister">
-					 <img src="assets/images/sigil_martell_small.jpg" alt="martell" id="martell">
-					 <img src="assets/images/sigil_nightswatch_small.jpg" alt="nightswatch" id="nightswatch">
-					 <img src="assets/images/sigil_stark_small.jpg" alt="stark" id="stark">
-					 <img src="assets/images/sigil_targaryen_small.jpg" alt="targaryen" id="targaryen">
-					 <img src="assets/images/sigil_tully_small.jpg" alt="tully" id="tully">
-					 <img src="assets/images/sigil_tyrell_small.jpg" alt="tyrell" id="tyrell">
-					 <img src="assets/images/sigil_whitewalkers_small.jpg" alt="whitewalkers" id="whitewalkers">
-					 <img src="assets/images/hangman_small.jpg" alt="hangman" id="hangman">
-			
-			</aside>		
+	<div class="main-body">
+		<div class = "main-container">
+			<header class="header">
+				<img id='logo' src = 'assets/images/got_logo.png' alt="got_logo">
+				<h2>WHO WILL WIN THE IRON THRONE?</h2>
+			</header>
+			<div id="space-bar"></div>
+			<div class ="container-body">
+				<article class ="main-section">
+					<div id="win-text">WINS</div>
+					<div id="wins">	</div>				
+					<div id="gueses-text">GUESSES REMAINING</div>
+					<div id="guessesLeft"></div>
+					<div id="lettersguessed-test">LETTER GUESSED</div>
+					<div id="incorrectLetters"></div>
+					<div id="current-word-text">CURRENT WORD</div>
+					<div id="letters"></div>
+						
+				</article>
+				<aside class ="aside">
+				
+						 <img src="assets/images/throne_small.jpg" alt="throne" id="throne">
+						 <img src="assets/images/sigil_arryn_small.jpg" alt="arryn" id="arryn">
+						 <img src="assets/images/sigil_baratheon_small.jpg" alt="baratheon" id="baratheon">
+						 <img src="assets/images/sigil_greyjoy_small.jpg" alt="greyjoy" id="greyjoy">
+						 <img src="assets/images/sigil_lannister_small.jpg" alt="lannister" id="lannister">
+						 <img src="assets/images/sigil_martell_small.jpg" alt="martell" id="martell">
+						 <img src="assets/images/sigil_nightswatch_small.jpg" alt="nightswatch" id="nightswatch">
+						 <img src="assets/images/sigil_stark_small.jpg" alt="stark" id="stark">
+						 <img src="assets/images/sigil_targaryen_small.jpg" alt="targaryen" id="targaryen">
+						 <img src="assets/images/sigil_tully_small.jpg" alt="tully" id="tully">
+						 <img src="assets/images/sigil_tyrell_small.jpg" alt="tyrell" id="tyrell">
+						 <img src="assets/images/sigil_whitewalkers_small.jpg" alt="whitewalkers" id="whitewalkers">
+						 <img src="assets/images/hangman_small.jpg" alt="hangman" id="hangman">
+				
+				</aside>		
 
+		</div>
 	</div>
-</div>
 
-	<script type="text/javascript">
+<script src="assets/javascript/hangman-javascript.js"></script>
 	
-	var zIndex = 2;
-	var zIndexBack = 1;
-	var placeholder;
-	var correctGuesses = 0;
-	var guessesLeft = 6;
-	var wrongLetter = true;
-	var wins = 0;	
-	var wrongLetters = [];
-	var correctLetters = [];
-	var wordChoices = ["TARGARYEN", "STARK", "LANNISTER", "TULLY", "BARATHEON", "MARTELL", "TYRELL", 'WHITEWALKERS', 'NIGHTSWATCH', 'GREYJOY'];
-	
-	
-	var currentSong = document.createElement("audio");
-	var audioTargaryen = document.createElement("audio");
-      audioTargaryen.setAttribute("src", "assets/audio/targaryen.mp3");
-
-	var audioStark = document.createElement("audio");
-      audioStark.setAttribute("src", "assets/audio/stark.mp3");
-
-    var audioLannister = document.createElement("audio");
-      audioLannister.setAttribute("src", "assets/audio/lannister.mp3");
-
-	var audioDothraki = document.createElement("audio");
-      audioDothraki.setAttribute("src", "assets/audio/dothraki.mp3");
-
-	var audioTully = document.createElement("audio");
-      audioTully.setAttribute("src", "assets/audio/tully.mp3");
-
-    var audioBaratheon = document.createElement("audio");
-      audioBaratheon.setAttribute("src", "assets/audio/baratheon.mp3");
-
-	var audioMartell = document.createElement("audio");
-      audioMartell.setAttribute("src", "assets/audio/martell.mp3");
-
-	var audioTyrell = document.createElement("audio");
-      audioTyrell.setAttribute("src", "assets/audio/Tyrell.mp3");
-
-	var audioWhitewalkers = document.createElement("audio");
-      audioWhitewalkers.setAttribute("src", "assets/audio/whitewalker.mp3");    
-
-	var audioNightswatch = document.createElement("audio");
-      audioNightswatch.setAttribute("src", "assets/audio/nightswatch.mp3");
-
-    var AudioGreyjoy = document.createElement("audio");
-      AudioGreyjoy.setAttribute("src", "assets/audio/greyjoy.mp3");
-
-	function gameReset()
-	{	
-		document.getElementById("throne").style.zIndex = 99 + zIndex;
-		audioStark.pause();
-		audioLannister.pause();
-		audioTully.pause();
-		audioTyrell.pause();
-		audioMartell.pause();
-		audioWhitewalkers.pause();
-		audioNightswatch.pause();
-		AudioGreyjoy.pause();
-		audioBaratheon.pause();
-		audioDothraki.pause();
-		audioTargaryen.pause();
-		emptyBox = true;
-		console.log("game has reset");
-		placeholder=[];
-		wrongLetters = [];
-		correctLetters = [];
-		guessesLeft = 6;
-		correctGuesses = 0;
-		var html = document.querySelector("#incorrectLetters").innerHTML = "";
-		var html1 = document.querySelector("#guessesLeft").innerHTML = guessesLeft;
-		chosenWord = wordChoices[Math.floor(Math.random()*wordChoices.length)];
-		console.log("choosen word is " + chosenWord);
-		for (var j=0; j<chosenWord.length; j++)
-		{	
-			placeholder[j] = "_ ";		
-			console.log(placeholder);
-		}
-		document.getElementById('letters').innerHTML = placeholder.join("");	
-		startGame();
-		console.log("chosen word length is " + chosenWord.length);	
-		var html2 = document.querySelector("#space-bar").innerHTML = "";
-	}
-
-	function gameWin()
-	{	
-
-		document.getElementById("throne").style.zIndex = zIndexBack;
-		if (chosenWord == "TARGARYEN"){
-			audioTargaryen.currentTime = 0;
-			var currentSong = audioTargaryen.play();
-			document.getElementById("targaryen").style.zIndex = zIndex;	
-		}
-		if (chosenWord == "STARK"){
-			audioStark.currentTime = 0;
-			audioStark.play();
-			document.getElementById("stark").style.zIndex = zIndex;	
-		}
-		if (chosenWord == "LANNISTER"){
-			audioLannister.currentTime = 0;
-			audioLannister.play();	
-			document.getElementById("lannister").style.zIndex = zIndex;	
-		}
-
-		if (chosenWord == "DOTHRAKI") {
-			audioDothraki.currentTime = 0;
-			audioLannister.play();
-			document.getElementById("dothraki").style.zIndex = zIndex;		
-		}
-		if (chosenWord == "TULLY") {
-			audioTully.currentTime = 0;
-			audioTully.play();
-			document.getElementById("tully").style.zIndex = zIndex;
-		}
-		if (chosenWord == "BARATHEON"){
-			audioBaratheon.currentTime = 0;
-			audioBaratheon.play();
-			document.getElementById("baratheon").style.zIndex = zIndex;
-		}
-		if (chosenWord == "MARTELL"){
-			audioMartell.currentTime = 0;
-			audioMartell.play();
-			document.getElementById("martell").style.zIndex = zIndex;
-		}
-		if (chosenWord == "TYRELL"){
-			audioTyrell.currentTime = 0;
-			audioTyrell.play();
-			document.getElementById("tyrell").style.zIndex = zIndex;
-		}
-		if (chosenWord == "WHITEWALKERS"){
-			audioWhitewalkers.currentTime = 0;
-			audioWhitewalkers.play();
-			document.getElementById("whitewalkers").style.zIndex = zIndex;
-		}
-		if (chosenWord == "NIGHTSWATCH"){
-			audioNightswatch.currentTime = 0;
-			audioNightswatch.play();
-			document.getElementById("nightswatch").style.zIndex = zIndex;
-		}
-		if (chosenWord == "GREYJOY"){
-			AudioGreyjoy.currentTime = 0;
-			AudioGreyjoy.play();
-			document.getElementById("greyjoy").style.zIndex = zIndex;
-		}
-		zIndex++;
-		var html = document.querySelector("#wins").innerHTML = wins;
-		spaceBarStart();
-	}
-
-	function gameLoss()
-	{
-		document.getElementById("throne").style.zIndex = zIndexBack;
-		document.getElementById("hangman").style.zIndex = zIndex;
-		zIndex++;
-		spaceBarStart();
-	}
-
-	function spaceBarStart()
-	{
-		var html2 = document.querySelector("#space-bar").innerHTML = 
-		"PRESS THE SPACE BAR TO START!";
-		document.onkeyup = function (event)
-		{	if (event.keyCode ==32)
-			{
-				gameReset();
-			}
-		}
-	}
-
-	spaceBarStart();
-
-	function startGame()
-	{
-		document.onkeyup = function (event)
-		{
-			var currentGuess = event.key;
-			var currentGuessUpper = currentGuess.toUpperCase();
-			console.log("current guess is " + currentGuessUpper);
-			document.getElementById('letters').innerHTML = placeholder;	
-			wrongLetter=true;
-		
-				for (var i=0; i<chosenWord.length;i++)
-				{	
-					if (chosenWord.charAt(i)===currentGuessUpper)
-					{
-						placeholder[i] = currentGuessUpper;
-						correctLetters.push(currentGuessUpper);
-							console.log("correct letters are " + correctLetters);
-							console.log("correct letters are " + placeholder);
-						wrongLetter = false;			
-							console.log("wrong letter is " + wrongLetter);
-						correctGuesses++;
-							console.log("Correct guesses is " + correctGuesses);
-								
-						if(correctGuesses === chosenWord.length)
-						{	console.log("game finished");
-							wins++;
-							console.log("wins is " + wins);
-							gameWin();	
-						}
-					}
-				}
-						if (wrongLetter == true)
-						{	
-							guessesLeft--;
-							wrongLetters.push(currentGuessUpper);
-							var html1 = document.querySelector("#guessesLeft").innerHTML = guessesLeft;
-								console.log("The wrong letters are " + wrongLetters);
-							document.getElementById('incorrectLetters').innerHTML = wrongLetters;
-								console.log("wrong letter " + currentGuessUpper);
-								console.log("wrong guesses total is " + guessesLeft);
-								console.log("wrong letter value is " + wrongLetter);
-
-							if (guessesLeft === 0)
-							{
-								console.log("game is over because this many wrong guesses " + guessesLeft);
-								gameLoss();
-							}
-						}
-			document.getElementById('letters').innerHTML = placeholder.join("")	;		
-		}
-	}
-	</script>  	
 </body>
 </html>
 
-<!-- 	// var imageDiv = document.getElementById("imageDiv");
-	// var imageEl = document.createElement("img");
-	// imageEl.setAttribute("src", "assets/images/sigil_tully.jpg");
-	// parent.appendChild(imageEl);
-
-	// var myImage = new Image(100, 200);
-	// myImage.src = 'assets/images/sigil_tully.jpg';
-	// document.body.appendChild(myImage); -->
