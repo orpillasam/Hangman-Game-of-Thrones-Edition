@@ -1,6 +1,16 @@
 Hangman - Game of Thrones Edition
 
+UCI Full Stack Web Development 24 week Boot Camp 9/25/17 to 4/7/18
 
+Homework #3 - Hard Assignment
+
+Assigned: 10/14/17
+
+Due: 10/21/17
+
+After doing the easier assignment, Pyschic Game, I felt a lot more confident to make this game on my own. I did have to look at some other hangman games that were made online, and learning a lot of JS functions we had not yet learned, such as join(), charAt().  Hangman also features an decent amount of if/else statements, which really helped me sharpening my logical thinking for programming.
+
+Since I am huge Game of Thrones fan, I felt very passionate about this project and put an inordinate amount of time making this work correctly.  I feel like I took a huge leap progress during the making of this, as the product is much better than anything else I made previously.
 
 
 **********************************************************************************
